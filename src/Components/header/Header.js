@@ -3,7 +3,6 @@ import React from "react";
 //Styles import
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./header.css";
-import "../../App.css";
 
 const Header = () => {
   return (
