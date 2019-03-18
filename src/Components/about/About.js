@@ -24,17 +24,17 @@ const About = () => {
     "Bankerna älskar kunder som har grundligt räknat på sitt boende innan de ansöker om lånelöfte. Prata igenom din kalkyl med en bankman, gör en rimlighetsbedmöning innan du ansöker, det kan spela en roll för vilken ränta de kan ge dig.";
   return (
     <section
-      class="content-section bg-primary text-white text-center"
+      className="content-section bg-primary text-white text-center"
       id="services"
     >
-      <div class="container">
-        <div class="content-section-heading">
-          <h3 class="text-secondary mb-0">
+      <div className="container">
+        <div className="content-section-heading">
+          <h3 className="text-secondary mb-0">
             Ett steg nämre ditt nya drömboende!
           </h3>
-          <h2 class="mb-5">Hur fungerar det?</h2>
+          <h2 className="mb-5">Hur fungerar det?</h2>
         </div>
-        <div class="row">
+        <div className="row">
           <Bullet text={bullet1} label={headline1} iconPick={1} />
           <Bullet text={bullet2} label={headline2} iconPick={2} />
           <Bullet text={bullet3} label={headline3} iconPick={3} />

@@ -1,127 +1,92 @@
 import React from "react";
 
+//#####Component Import#####
+import Slider from "./Slider";
+
 class AptForm extends React.Component {
   state = {
-    slider1: 20,
-    slider2: 30,
-    slider3: 40,
-    slider4: 50,
-    slider5: 60,
-    sum: 200
+    slutpris: 2500000,
+    cashDeposit: 15,
+    interestRate: 2,
+    payments: 2,
+    sum: null
   };
 
-  handleChange1 = async e => {
-    await this.setState({ slider1: e.target.value });
+  handleChange = async e => {
+    await this.setState({ [e.target.name]: e.target.value });
     this.updateSum();
   };
 
-  handleChange2 = async e => {
-    await this.setState({ slider2: e.target.value });
-    this.updateSum();
-  };
-
-  handleChange3 = async e => {
-    await this.setState({ slider2: e.target.value });
-    this.updateSum();
-  };
-
-  handleChange4 = async e => {
-    await this.setState({ slider2: e.target.value });
-    this.updateSum();
-  };
-
-  handleChange5 = async e => {
-    await this.setState({ slider2: e.target.value });
-    this.updateSum();
-  };
-
-  updateSum = () => {
-    const slider1Val = parseInt(this.state.slider1);
-    const slider2Val = parseInt(this.state.slider2);
-    this.setState({ sum: slider1Val + slider2Val });
+  updateSum = async () => {
+    let slutpris = parseInt(this.state.slutpris);
+    let cashDeposit = parseInt(this.state.cashDeposit) / 100;
+    let loanSize = slutpris - slutpris * cashDeposit;
+    let interestRate = parseFloat(this.state.interestRate) / 100;
+    let payments = ((parseFloat(this.state.payments) / 100) * loanSize) / 12;
+    let monthCost = (loanSize * interestRate) / 12 + payments;
+    await this.setState({
+      sum: monthCost
+    });
   };
 
   render() {
     return (
       <form>
         <div className="slide__container">
-          {/*Slider 1 */}
-          <label>Slider 1</label>
-          <input
-            className="slider"
-            type="range"
-            name="slider1"
-            min="1"
-            max="100"
-            step="1"
-            defaultValue="20"
-            onChange={this.handleChange1}
+          {/*Slutpris */}
+          <Slider
+            sliderLabel={"Estimerat Slutpris:"}
+            name={"slutpris"}
+            minValue={"750000"}
+            maxValue={"8500000"}
+            stepSize={"5000"}
+            defaultValue={"2500000"}
+            handleChange={this.handleChange}
           />
-          <span>Value: {this.state.slider1}</span>
+
+          <span>Value: {this.state.slutpris} SEK</span>
           <br />
           <br />
 
-          {/*Slider 2 */}
-          <label>Slider 2</label>
-          <input
-            className="slider"
-            type="range"
-            name="slider2"
-            min="1"
-            max="100"
-            step="1"
-            defaultValue="30"
-            onChange={this.handleChange2}
+          {/*Kontantinsats */}
+          <Slider
+            sliderLabel={"Kontantinsats (%):"}
+            name={"cashDeposit"}
+            minValue={"15"}
+            maxValue={"100"}
+            stepSize={"1"}
+            defaultValue={"15"}
+            handleChange={this.handleChange}
           />
-          <span>Value: {this.state.slider2}</span>
+          <span>Value: {this.state.cashDeposit}%</span>
           <br />
           <br />
 
-          {/*Slider 3 */}
-          <label>Slider 3</label>
-          <input
-            className="slider"
-            type="range"
-            name="slider3"
-            min="1"
-            max="100"
-            step="1"
-            defaultValue="30"
-            onChange={this.handleChange3}
+          {/*Räntesats */}
+          <Slider
+            sliderLabel={"Ränta (%)"}
+            name={"interestRate"}
+            minValue={"1"}
+            maxValue={"10"}
+            stepSize={".01"}
+            defaultValue={"2"}
+            handleChange={this.handleChange}
           />
-          <span>Value: {this.state.slider3}</span>
+          <span>Value: {this.state.interestRate}%</span>
           <br />
           <br />
 
-          {/*Slider 4 */}
-          <label>Slider 4</label>
-          <input
-            className="slider"
-            type="range"
-            name="slider4"
-            min="1"
-            max="100"
-            step="1"
-            defaultValue="30"
-            onChange={this.handleChange4}
+          {/*Räntesats */}
+          <Slider
+            sliderLabel={"Ammortering (%/år):"}
+            name={"payments"}
+            minValue={"0"}
+            maxValue={"5"}
+            stepSize={".1"}
+            defaultValue={"2"}
+            handleChange={this.handleChange}
           />
-          <span>Value: {this.state.slider4}</span>
-          <br />
-          <br />
-
-          {/*Slider 5 */}
-          <label>Slider 5</label>
-          <input
-            className="slider"
-            type="range"
-            name="slider5"
-            min="1"
-            max="100"
-            step="1"
-            defaultValue="30"
-            onChange={this.handleChange5}
-          />
-          <span>Value: {this.state.slider5}</span>
+          <span>Value: {this.state.payments}</span>
           <br />
           <br />
 
