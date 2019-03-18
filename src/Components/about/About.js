@@ -21,7 +21,7 @@ const About = () => {
 
   const headline4 = "Kalkylera!";
   const bullet4 =
-    "Bankerna älskar kunder som har grundligt räknat på sitt boende innan de ansöker om lånelöfte. Prata igenom din kalkyl med en bankman, gör en rimlighetsbedmöning innan du ansöker om ett lånelöfte.";
+    "Bankerna älskar kunder som har grundligt räknat på sitt boende innan de ansöker om lånelöfte. Prata igenom din kalkyl med en bankman, gör en rimlighetsbedmöning innan du ansöker, det kan spela en roll för vilken ränta de kan ge dig.";
   return (
     <section
       class="content-section bg-primary text-white text-center"
