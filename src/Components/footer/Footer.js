@@ -13,13 +13,22 @@ const Footer = () => {
             <a
               className="social-link rounded-circle text-white mr-3"
               href="https://www.instagram.com/boendekostnad.nu/"
+              // eslint-disable-next-line
+              target="_blank"
+              rel="noopener"
             >
               <i className="icon-social-instagram" />
             </a>
           </li>
           {/* TWITTER SOCIAL ICON */}
           <li className="list-inline-item">
-            <a className="social-link rounded-circle text-white mr-3" href="/">
+            <a
+              className="social-link rounded-circle text-white mr-3"
+              href="https://twitter.com/boendekostnad"
+              // eslint-disable-next-line
+              target="_blank"
+              rel="noopener"
+            >
               <i className="icon-social-twitter" />
             </a>
           </li>
@@ -28,6 +37,9 @@ const Footer = () => {
             <a
               className="social-link rounded-circle text-white mr-3"
               href="https://www.facebook.com/boendekostnad.nu/"
+              // eslint-disable-next-line
+              target="_blank"
+              rel="noopener"
             >
               <i className="icon-social-facebook" />
             </a>
