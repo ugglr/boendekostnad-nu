@@ -1,5 +1,8 @@
 import React from "react";
 
+//Import component styles
+import "./footer.css";
+
 //Simple Line Icons Import
 import "../../vendor/simple-line-icons/css/simple-line-icons.css";
 

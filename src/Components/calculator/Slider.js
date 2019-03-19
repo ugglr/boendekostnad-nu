@@ -1,6 +1,6 @@
 import React from "react";
 
-export const Slider = props => {
+const Slider = props => {
   return (
     <React.Fragment>
       <label>{props.sliderLabel}</label>

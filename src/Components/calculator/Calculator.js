@@ -1,11 +1,11 @@
 import React, { Component } from "react";
 
+//Local Component Imports
+import AptCalculator from "./aptCalculator/AptCalculator";
+import HouseCalculator from "./houseCalculator/HouseCalculator";
+//External Libraries Import
 import Switch from "@material-ui/core/Switch";
-
-import HouseForm from "./HouseForm";
-import AptForm from "./AptForm";
-import Results from "./Results/Results";
-
+//Style import
 import "./calculator.css";
 
 class Calculator extends Component {
@@ -22,18 +22,16 @@ class Calculator extends Component {
     return (
       <React.Fragment>
         <p style={{ marginLeft: "2rem" }}>
-          Form1
+          Hus
           <Switch
             checked={this.state.toggle}
             onChange={this.handleToggle}
             color="primary"
           />
-          Form2
+          Bostadsrätt
         </p>
-        {this.state.toggle && <AptForm />}
-        {this.state.toggle || <HouseForm />}
-
-        <Results />
+        {this.state.toggle && <AptCalculator />}
+        {this.state.toggle || <HouseCalculator />}
       </React.Fragment>
     );
   }

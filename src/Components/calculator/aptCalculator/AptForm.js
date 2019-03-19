@@ -1,7 +1,7 @@
 import React from "react";
 
 //#####Component Import#####
-import Slider from "./Slider";
+import Slider from "../Slider";
 
 class AptForm extends React.Component {
   state = {
