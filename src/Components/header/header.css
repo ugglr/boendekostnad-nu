@@ -18,10 +18,15 @@
 }
 
 .masthead h1 {
-  font-size: 4rem;
+  font-size: 5rem;
   margin: 0;
   padding: 0;
   color: #ecb807;
+}
+
+.masthead h2 {
+  color: #fff;
+  margin-top: 1rem;
 }
 
 .masthead h3 {

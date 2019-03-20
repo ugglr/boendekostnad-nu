@@ -8,8 +8,9 @@ import Slider from "../Slider";
 const HouseForm = props => {
   return (
     <form>
-      <h3>Hus/Villa/Fastigheter</h3>
       <div className="slide__container">
+        <h3>Hus/Villa/Fastigheter</h3>
+        <hr />
         {/*Slutpris */}
         <Slider
           sliderLabel={"Estimerat Slutpris:"}
@@ -75,7 +76,8 @@ const HouseForm = props => {
           name={"transportToggle"}
           checked={props.transportToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Transportkostnader/månad:
         {props.transportToggle && (
@@ -98,7 +100,8 @@ const HouseForm = props => {
           name={"foodToggle"}
           checked={props.foodToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Matkostnader/månad:
         {props.foodToggle && (
@@ -121,7 +124,8 @@ const HouseForm = props => {
           name={"insuranceToggle"}
           checked={props.insuranceToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Försäkringskostnader/månad:
         {props.insuranceToggle && (
@@ -144,7 +148,8 @@ const HouseForm = props => {
           name={"renoFundToggle"}
           checked={props.renoFundToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Renoveringsfond/månad:
         {props.renoFundToggle && (
@@ -167,7 +172,8 @@ const HouseForm = props => {
           name={"otherToggle"}
           checked={props.otherToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Övriga månadskostnader:
         {props.otherToggle && (
@@ -190,7 +196,8 @@ const HouseForm = props => {
           name={"pantbrevToggle"}
           checked={props.pantbrevToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Befintlig Summa Pantbrev: <br />
         Om du inte anger något är nuvarande summa av uttagna pantbrev satt till

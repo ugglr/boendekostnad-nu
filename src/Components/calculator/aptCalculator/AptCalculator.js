@@ -16,8 +16,7 @@ class AptCalculator extends Component {
     monthlyInterestPayments: 3542,
     yearlyPaymentsPercentage: 2,
     monthlyPayments: 3542,
-    yearlyRunningCost: 50000,
-    monthlyRunningCost: 4167,
+    monthlyFee: 4500,
     sum: 11251,
     //----------Other living costs--------------
     //Other
@@ -106,10 +105,9 @@ class AptCalculator extends Component {
     let monthlyPaymentsCost = (loanSize * yearlyPaymentsPercentage) / 12;
     this.setState({ monthlyPayments: monthlyPaymentsCost.toFixed() });
     //The monthly cost of running the house
-    let monthlyRunningCost = parseInt(this.state.yearlyRunningCost) / 12;
+    let monthlyFee = parseInt(this.state.monthlyFee);
     //The monthly costs added up!
-    let monthCost =
-      monthlyInterestPayments + monthlyPaymentsCost + monthlyRunningCost;
+    let monthCost = monthlyInterestPayments + monthlyPaymentsCost + monthlyFee;
     await this.setState({
       sum: monthCost.toFixed()
     });
@@ -148,16 +146,11 @@ class AptCalculator extends Component {
     );
     let yearsLeft = (percentageLeft / yearlyPaymentsPercentage).toFixed(2);
     let cashDeposit = slutPris * (cashDepositPercentage / 100);
-    let lagfart = slutPris * 0.015 + 825;
-    let pantbrev = (slutPris - parseInt(this.state.nuvarandePantbrev)) * 0.02;
-    let cashOnHand = pantbrev + lagfart + cashDeposit;
+
     this.setState({
       loanPercentageLeft: percentageLeft,
       yearsLeft: yearsLeft,
-      cashDeposit: cashDeposit,
-      lagfart: lagfart,
-      pantbrev: pantbrev,
-      cashOnHand: cashOnHand
+      cashDeposit: cashDeposit
     });
   };
 
@@ -173,7 +166,7 @@ class AptCalculator extends Component {
             cashDepositPercentage={this.state.cashDepositPercentage}
             interestRate={this.state.interestRate}
             yearlyPaymentsPercentage={this.state.yearlyPaymentsPercentage}
-            yearlyRunningCost={this.state.yearlyRunningCost}
+            monthlyFee={this.state.monthlyFee}
             monthlyTransportCosts={this.state.monthlyTransportCosts}
             monthlyFoodCosts={this.state.monthlyFoodCosts}
             monthlyInsuranceCost={this.state.monthlyInsuranceCost}
@@ -187,8 +180,6 @@ class AptCalculator extends Component {
             insuranceToggle={this.state.insuranceToggle}
             renoFundToggle={this.state.renoFundToggle}
             otherToggle={this.state.otherToggle}
-            pantbrevToggle={this.state.pantbrevToggle}
-            nuvarandePantbrev={this.state.nuvarandePantbrev}
           />
         </div>
         <Results
@@ -196,6 +187,7 @@ class AptCalculator extends Component {
           monthCost={this.state.sum}
           monthlyInterestPayments={this.state.monthlyInterestPayments}
           monthlyRunningCost={this.state.monthlyRunningCost}
+          monthlyFee={this.state.monthlyFee}
           monthlyPayments={this.state.monthlyPayments}
           monthlyTransportCosts={this.state.monthlyTransportCosts}
           monthlyFoodCosts={this.state.monthlyFoodCosts}
@@ -208,10 +200,6 @@ class AptCalculator extends Component {
           yearsLeft={this.state.yearsLeft}
           loanSize={this.state.loanSize}
           cashDeposit={this.state.cashDeposit}
-          lagfart={this.state.lagfart}
-          nuvarandePantbrev={this.state.nuvarandePantbrev}
-          pantbrev={this.state.pantbrev}
-          cashOnHand={this.state.cashOnHand}
         />
       </React.Fragment>
     );

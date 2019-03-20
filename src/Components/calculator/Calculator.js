@@ -10,7 +10,7 @@ import "./calculator.css";
 
 class Calculator extends Component {
   state = {
-    toggle: false
+    toggle: true
   };
 
   handleToggle = async e => {
@@ -21,11 +21,12 @@ class Calculator extends Component {
   render() {
     return (
       <React.Fragment>
-        <p style={{ marginLeft: "2rem" }}>
+        <p style={{ marginLeft: "5rem" }}>
           <Switch
             checked={this.state.toggle}
             onChange={this.handleToggle}
             color="primary"
+            style={{ color: "#1d809f" }}
           />
           Bostadsrätt
         </p>

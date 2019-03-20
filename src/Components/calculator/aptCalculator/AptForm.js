@@ -8,8 +8,9 @@ import Slider from "../Slider";
 const AptForm = props => {
   return (
     <form>
-      <h3>Bostadsrätter</h3>
       <div className="slide__container">
+        <h3>Bostadsrätter</h3>
+        <hr />
         {/*Slutpris */}
         <Slider
           sliderLabel={"Estimerat Slutpris:"}
@@ -56,26 +57,27 @@ const AptForm = props => {
           defaultValue={"2"}
           handleChange={props.handleChange}
         />
-        <span>{props.yearlyPaymentsPercentage}</span>
+        <span>{props.yearlyPaymentsPercentage}%</span>
         <hr />
         {/*Driftskostnad */}
         <Slider
-          sliderLabel={"Driftskostnad/år:"}
-          name={"yearlyRunningCost"}
-          minValue={"10000"}
-          maxValue={"100000"}
-          stepSize={"500"}
-          defaultValue={"50000"}
+          sliderLabel={"Avgift/månad:"}
+          name={"monthlyFee"}
+          minValue={"1000"}
+          maxValue={"15000"}
+          stepSize={"50"}
+          defaultValue={"4500"}
           handleChange={props.handleChange}
         />
-        <span>{props.yearlyRunningCost}</span>
+        <span>{props.monthlyFee} SEK</span>
         <hr />
         {/*Transport costs */}
         <Switch
           name={"transportToggle"}
           checked={props.transportToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Transportkostnader/månad:
         {props.transportToggle && (
@@ -98,7 +100,8 @@ const AptForm = props => {
           name={"foodToggle"}
           checked={props.foodToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Matkostnader/månad:
         {props.foodToggle && (
@@ -121,7 +124,8 @@ const AptForm = props => {
           name={"insuranceToggle"}
           checked={props.insuranceToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Försäkringskostnader/månad:
         {props.insuranceToggle && (
@@ -144,7 +148,8 @@ const AptForm = props => {
           name={"renoFundToggle"}
           checked={props.renoFundToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Renoveringsfond/månad:
         {props.renoFundToggle && (
@@ -167,7 +172,8 @@ const AptForm = props => {
           name={"otherToggle"}
           checked={props.otherToggle}
           onChange={props.handleToggle}
-          color="primary"
+          color="default"
+          style={{ color: "#1d809f" }}
         />
         Övriga månadskostnader:
         {props.otherToggle && (
@@ -182,31 +188,6 @@ const AptForm = props => {
               handleChange={props.handleChange}
             />
             <span>{props.monthlyOtherCost}</span>
-          </React.Fragment>
-        )}
-        <hr />
-        {/*Befintlig Summa Pantbrev */}
-        <Switch
-          name={"pantbrevToggle"}
-          checked={props.pantbrevToggle}
-          onChange={props.handleToggle}
-          color="primary"
-        />
-        Befintlig Summa Pantbrev: <br />
-        Om du inte anger något är nuvarande summa av uttagna pantbrev satt till
-        0 SEK.
-        {props.pantbrevToggle && (
-          <React.Fragment>
-            <Slider
-              sliderLabel={""}
-              name={"nuvarandePantbrev"}
-              minValue={"0"}
-              maxValue={props.slutpris}
-              stepSize={"1000"}
-              defaultValue={"0"}
-              handleChange={props.handleChange}
-            />
-            <span>{props.nuvarandePantbrev}</span>
           </React.Fragment>
         )}
         <hr />

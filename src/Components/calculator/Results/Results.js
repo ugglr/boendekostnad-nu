@@ -9,7 +9,7 @@ const Results = props => {
           <hr />
           <p>Ränta/månad: {props.monthlyInterestPayments} SEK</p>
           <p>Ammortering/månad: {props.monthlyPayments} SEK</p>
-          <p>Driftskostnader/månad: {props.monthlyRunningCost} SEK</p>
+          <p>Avgift: {props.monthlyFee} SEK</p>
           <h4 className="mb-4">
             Fast Boendekostnad/månad: {props.monthCost} SEK
           </h4>
@@ -27,10 +27,7 @@ const Results = props => {
           <p>Antal år kvar vid nuvarande ammorteringsgrad: {props.yearsLeft}</p>
           <h4>Lånebild: {props.loanSize} SEK</h4>
           <hr />
-          <p>Kontantinsats: {props.cashDeposit} SEK</p>
-          <p>Lagfart: {props.lagfart} SEK</p>
-          <p>Pantbrev: {props.pantbrev}</p>
-          <h4>Kontanter vid inköp: {props.cashOnHand} SEK</h4>
+          <h4>Kontantinsats: {props.cashDeposit} SEK</h4>
         </div>
       </section>
     );
