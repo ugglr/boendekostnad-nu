@@ -8,6 +8,7 @@ import Slider from "../Slider";
 const HouseForm = props => {
   return (
     <form>
+      <h3>Hus/Villa/Fastigheter</h3>
       <div className="slide__container">
         {/*Slutpris */}
         <Slider
@@ -181,6 +182,31 @@ const HouseForm = props => {
               handleChange={props.handleChange}
             />
             <span>{props.monthlyOtherCost}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Befintlig Summa Pantbrev */}
+        <Switch
+          name={"pantbrevToggle"}
+          checked={props.pantbrevToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Befintlig Summa Pantbrev: <br />
+        Om du inte anger något är nuvarande summa av uttagna pantbrev satt till
+        0 SEK.
+        {props.pantbrevToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"nuvarandePantbrev"}
+              minValue={"0"}
+              maxValue={props.slutpris}
+              stepSize={"1000"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.nuvarandePantbrev}</span>
           </React.Fragment>
         )}
         <hr />

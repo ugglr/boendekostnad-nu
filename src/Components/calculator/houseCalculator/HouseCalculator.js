@@ -11,6 +11,7 @@ class HouseCalculator extends Component {
     //--------Fixed monthly living costs-----------
     slutpris: 2500000,
     cashDepositPercentage: 15,
+    cashDeposit: 375000,
     interestRate: 2,
     monthlyInterestPayments: 3542,
     yearlyPaymentsPercentage: 2,
@@ -36,22 +37,35 @@ class HouseCalculator extends Component {
     monthlyOtherCost: 0,
     sumOtherCosts: 0,
     totalResult: 11251,
-    //----------------Loan Stats--------------
+    //----------------Loan Stats-------------------------
     loanPercentageLeft: 85,
-    yearsLeft: 42.5
+    yearsLeft: 42.5,
+    loanSize: 2125000,
+    //-----------Other fees when buying a House----------
+    lagfart: 38325,
+    pantbrevToggle: false,
+    nuvarandePantbrev: 0,
+    pantbrev: 50000,
+    //--------------Cash Needed on hand at purchase------
+    cashOnHand: 463325
   };
 
+  //This updates the states when the sliders are moved
   handleChange = async e => {
     await this.setState({ [e.target.name]: e.target.value });
     this.updateSum();
     this.sumOtherCosts();
+    this.calcLoanStats();
   };
 
+  //This handels the toggles from inside the HouseForm
   handleToggle = async e => {
     await this.setState({ [e.target.name]: e.target.checked });
     this.ifFalseReset();
   };
 
+  //When somone toggles off the optional
+  //category we need to reset the value
   ifFalseReset = () => {
     if (this.state.transportToggle === false) {
       this.setState({ monthlyTransportCosts: 0 });
@@ -63,9 +77,12 @@ class HouseCalculator extends Component {
       this.setState({ monthlyRenoFundCost: 0 });
     } else if (this.state.otherToggle === false) {
       this.setState({ monthlyOtherCost: 0 });
+    } else if (this.state.pantbrevToggle === false) {
+      this.setState({ pantbrev: 0 });
     }
   };
 
+  //This function updates the values of the fixed costs
   updateSum = async () => {
     //Price of House
     let slutpris = parseInt(this.state.slutpris);
@@ -74,6 +91,7 @@ class HouseCalculator extends Component {
       parseInt(this.state.cashDepositPercentage) / 100;
     //The size of the loan
     let loanSize = slutpris - slutpris * cashDepositPercentage;
+    await this.setState({ loanSize: loanSize });
     //Yearly interest rate of on the loan
     let interestRate = (parseFloat(this.state.interestRate) / 100).toFixed(6);
     //Monthly cost in interest on the loan
@@ -97,6 +115,7 @@ class HouseCalculator extends Component {
     });
   };
 
+  //This function sums all the optional monthly costs
   sumOtherCosts = () => {
     let monthlyTransportCosts = parseInt(this.state.monthlyTransportCosts);
     let monthlyFoodCosts = parseInt(this.state.monthlyFoodCosts);
@@ -110,8 +129,7 @@ class HouseCalculator extends Component {
         monthlyFoodCosts +
         monthlyInsuranceCost +
         monthlyRenoFundCost +
-        monthlyOtherCost,
-      totalResult: this.state.sum + this.state.sumOtherCosts
+        monthlyOtherCost
     });
     let sum = parseInt(this.state.sum);
     let sumOtherCosts = parseInt(this.state.sumOtherCosts);
@@ -120,42 +138,59 @@ class HouseCalculator extends Component {
     });
   };
 
+  //This is calculating the status of the loan required
   calcLoanStats = () => {
-    let percentageLeft = 100 - parseInt(this.state.cashDepositPercentage);
-    let yearsLeft = percentageLeft / this.state.yearlyPaymentsPercentage;
-
+    let slutPris = parseInt(this.state.slutpris);
+    let cashDepositPercentage = parseFloat(this.state.cashDepositPercentage);
+    let percentageLeft = 100 - cashDepositPercentage;
+    let yearlyPaymentsPercentage = parseFloat(
+      this.state.yearlyPaymentsPercentage
+    );
+    let yearsLeft = (percentageLeft / yearlyPaymentsPercentage).toFixed(2);
+    let cashDeposit = slutPris * (cashDepositPercentage / 100);
+    let lagfart = slutPris * 0.015 + 825;
+    let pantbrev = (slutPris - parseInt(this.state.nuvarandePantbrev)) * 0.02;
+    let cashOnHand = pantbrev + lagfart + cashDeposit;
     this.setState({
       loanPercentageLeft: percentageLeft,
-      yearsLeft: yearsLeft
+      yearsLeft: yearsLeft,
+      cashDeposit: cashDeposit,
+      lagfart: lagfart,
+      pantbrev: pantbrev,
+      cashOnHand: cashOnHand
     });
   };
 
   render() {
     return (
       <React.Fragment>
-        <HouseForm
-          handleChange={this.handleChange}
-          handleToggle={this.handleToggle}
-          updateSum={this.updateSum}
-          slutpris={this.state.slutpris}
-          cashDepositPercentage={this.state.cashDepositPercentage}
-          interestRate={this.state.interestRate}
-          yearlyPaymentsPercentage={this.state.yearlyPaymentsPercentage}
-          yearlyRunningCost={this.state.yearlyRunningCost}
-          monthlyTransportCosts={this.state.monthlyTransportCosts}
-          monthlyFoodCosts={this.state.monthlyFoodCosts}
-          monthlyInsuranceCost={this.state.monthlyInsuranceCost}
-          monthlyRenoFundCost={this.state.monthlyRenoFundCost}
-          monthlyOtherCost={this.state.monthlyOtherCost}
-          sumOtherCosts={this.state.sumOtherCosts}
-          loanLeft={this.state.loanPercentageLeft}
-          yearsLeft={this.state.yearsLeft}
-          transportToggle={this.state.transportToggle}
-          foodToggle={this.state.foodToggle}
-          insuranceToggle={this.state.insuranceToggle}
-          renoFundToggle={this.state.renoFundToggle}
-          otherToggle={this.state.otherToggle}
-        />
+        <div style={{ width: "100%", marginLeft: "2rem" }}>
+          <HouseForm
+            handleChange={this.handleChange}
+            handleToggle={this.handleToggle}
+            updateSum={this.updateSum}
+            slutpris={this.state.slutpris}
+            cashDepositPercentage={this.state.cashDepositPercentage}
+            interestRate={this.state.interestRate}
+            yearlyPaymentsPercentage={this.state.yearlyPaymentsPercentage}
+            yearlyRunningCost={this.state.yearlyRunningCost}
+            monthlyTransportCosts={this.state.monthlyTransportCosts}
+            monthlyFoodCosts={this.state.monthlyFoodCosts}
+            monthlyInsuranceCost={this.state.monthlyInsuranceCost}
+            monthlyRenoFundCost={this.state.monthlyRenoFundCost}
+            monthlyOtherCost={this.state.monthlyOtherCost}
+            sumOtherCosts={this.state.sumOtherCosts}
+            loanLeft={this.state.loanPercentageLeft}
+            yearsLeft={this.state.yearsLeft}
+            transportToggle={this.state.transportToggle}
+            foodToggle={this.state.foodToggle}
+            insuranceToggle={this.state.insuranceToggle}
+            renoFundToggle={this.state.renoFundToggle}
+            otherToggle={this.state.otherToggle}
+            pantbrevToggle={this.state.pantbrevToggle}
+            nuvarandePantbrev={this.state.nuvarandePantbrev}
+          />
+        </div>
         <Results
           monthCost={this.state.sum}
           monthlyInterestPayments={this.state.monthlyInterestPayments}
@@ -168,6 +203,14 @@ class HouseCalculator extends Component {
           monthlyOtherCost={this.state.monthlyOtherCost}
           sumOtherCosts={this.state.sumOtherCosts}
           totalResult={this.state.totalResult}
+          loanPercentageLeft={this.state.loanPercentageLeft}
+          yearsLeft={this.state.yearsLeft}
+          loanSize={this.state.loanSize}
+          cashDeposit={this.state.cashDeposit}
+          lagfart={this.state.lagfart}
+          nuvarandePantbrev={this.state.nuvarandePantbrev}
+          pantbrev={this.state.pantbrev}
+          cashOnHand={this.state.cashOnHand}
         />
       </React.Fragment>
     );

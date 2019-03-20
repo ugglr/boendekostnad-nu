@@ -1,4 +1,6 @@
 import React from "react";
+//External Libraries Import
+import Switch from "@material-ui/core/Switch";
 
 //Local Component Import
 import Slider from "../Slider";
@@ -6,7 +8,7 @@ import Slider from "../Slider";
 const AptForm = props => {
   return (
     <form>
-      <h1>This is the APT Form</h1>
+      <h3>Bostadsrätter</h3>
       <div className="slide__container">
         {/*Slutpris */}
         <Slider
@@ -18,11 +20,8 @@ const AptForm = props => {
           defaultValue={"2500000"}
           handleChange={props.handleChange}
         />
-
         <span>{props.slutpris} SEK</span>
-        <br />
-        <br />
-
+        <hr />
         {/*Kontantinsats */}
         <Slider
           sliderLabel={"Kontantinsats (%):"}
@@ -34,9 +33,7 @@ const AptForm = props => {
           handleChange={props.handleChange}
         />
         <span>{props.cashDepositPercentage}%</span>
-        <br />
-        <br />
-
+        <hr />
         {/*Räntesats */}
         <Slider
           sliderLabel={"Ränta (%)"}
@@ -48,9 +45,7 @@ const AptForm = props => {
           handleChange={props.handleChange}
         />
         <span>{props.interestRate}%</span>
-        <br />
-        <br />
-
+        <hr />
         {/*Ammortering */}
         <Slider
           sliderLabel={"Ammortering (%/år):"}
@@ -62,12 +57,10 @@ const AptForm = props => {
           handleChange={props.handleChange}
         />
         <span>{props.yearlyPaymentsPercentage}</span>
-        <br />
-        <br />
-
+        <hr />
         {/*Driftskostnad */}
         <Slider
-          sliderLabel={"Driftskostnad (SEK/år):"}
+          sliderLabel={"Driftskostnad/år:"}
           name={"yearlyRunningCost"}
           minValue={"10000"}
           maxValue={"100000"}
@@ -76,7 +69,147 @@ const AptForm = props => {
           handleChange={props.handleChange}
         />
         <span>{props.yearlyRunningCost}</span>
-        <br />
+        <hr />
+        {/*Transport costs */}
+        <Switch
+          name={"transportToggle"}
+          checked={props.transportToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Transportkostnader/månad:
+        {props.transportToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"monthlyTransportCosts"}
+              minValue={"0"}
+              maxValue={"10000"}
+              stepSize={"100"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.monthlyTransportCosts}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Food costs */}
+        <Switch
+          name={"foodToggle"}
+          checked={props.foodToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Matkostnader/månad:
+        {props.foodToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"monthlyFoodCosts"}
+              minValue={"0"}
+              maxValue={"10000"}
+              stepSize={"100"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.monthlyFoodCosts}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Insurance costs */}
+        <Switch
+          name={"insuranceToggle"}
+          checked={props.insuranceToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Försäkringskostnader/månad:
+        {props.insuranceToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"monthlyInsuranceCost"}
+              minValue={"0"}
+              maxValue={"10000"}
+              stepSize={"100"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.monthlyInsuranceCost}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Renovation fund costs */}
+        <Switch
+          name={"renoFundToggle"}
+          checked={props.renoFundToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Renoveringsfond/månad:
+        {props.renoFundToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"monthlyRenoFundCost"}
+              minValue={"0"}
+              maxValue={"10000"}
+              stepSize={"100"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.monthlyRenoFundCost}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Other monthly costs */}
+        <Switch
+          name={"otherToggle"}
+          checked={props.otherToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Övriga månadskostnader:
+        {props.otherToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"monthlyOtherCost"}
+              minValue={"0"}
+              maxValue={"10000"}
+              stepSize={"100"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.monthlyOtherCost}</span>
+          </React.Fragment>
+        )}
+        <hr />
+        {/*Befintlig Summa Pantbrev */}
+        <Switch
+          name={"pantbrevToggle"}
+          checked={props.pantbrevToggle}
+          onChange={props.handleToggle}
+          color="primary"
+        />
+        Befintlig Summa Pantbrev: <br />
+        Om du inte anger något är nuvarande summa av uttagna pantbrev satt till
+        0 SEK.
+        {props.pantbrevToggle && (
+          <React.Fragment>
+            <Slider
+              sliderLabel={""}
+              name={"nuvarandePantbrev"}
+              minValue={"0"}
+              maxValue={props.slutpris}
+              stepSize={"1000"}
+              defaultValue={"0"}
+              handleChange={props.handleChange}
+            />
+            <span>{props.nuvarandePantbrev}</span>
+          </React.Fragment>
+        )}
+        <hr />
         <br />
       </div>
     </form>
