@@ -55,7 +55,9 @@ const Footer = () => {
           Disclaimer: Vi tar inget ansvar om hur din kalkyl används och vi
           förbehåller oss rätten att vår kalyleringsalgorithm inte totalt
           återspeglar verkligheten. Detta är ett verktyg för att estimera
-          boendekostnader och ska bestraktas som ett i raden av hjälpmedel.
+          boendekostnader och ska bestraktas som ett i raden av hjälpmedel när
+          du köper en ny bostad. Vi värnar om den personliga integriteten och vi
+          sparar därmed ingen information.
         </p>
       </div>
     </footer>

@@ -1,100 +1,86 @@
 import React from "react";
 
-//#####Component Import#####
+//Local Component Import
 import Slider from "../Slider";
 
-class AptForm extends React.Component {
-  state = {
-    slutpris: 2500000,
-    cashDeposit: 15,
-    interestRate: 2,
-    payments: 2,
-    sum: null
-  };
+const AptForm = props => {
+  return (
+    <form>
+      <h1>This is the APT Form</h1>
+      <div className="slide__container">
+        {/*Slutpris */}
+        <Slider
+          sliderLabel={"Estimerat Slutpris:"}
+          name={"slutpris"}
+          minValue={"750000"}
+          maxValue={"11000000"}
+          stepSize={"5000"}
+          defaultValue={"2500000"}
+          handleChange={props.handleChange}
+        />
 
-  handleChange = async e => {
-    await this.setState({ [e.target.name]: e.target.value });
-    this.updateSum();
-  };
+        <span>{props.slutpris} SEK</span>
+        <br />
+        <br />
 
-  updateSum = async () => {
-    let slutpris = parseInt(this.state.slutpris);
-    let cashDeposit = parseInt(this.state.cashDeposit) / 100;
-    let loanSize = slutpris - slutpris * cashDeposit;
-    let interestRate = parseFloat(this.state.interestRate) / 100;
-    let payments = ((parseFloat(this.state.payments) / 100) * loanSize) / 12;
-    let monthCost = (loanSize * interestRate) / 12 + payments;
-    await this.setState({
-      sum: monthCost
-    });
-  };
+        {/*Kontantinsats */}
+        <Slider
+          sliderLabel={"Kontantinsats (%):"}
+          name={"cashDepositPercentage"}
+          minValue={"15"}
+          maxValue={"100"}
+          stepSize={"1"}
+          defaultValue={"15"}
+          handleChange={props.handleChange}
+        />
+        <span>{props.cashDepositPercentage}%</span>
+        <br />
+        <br />
 
-  render() {
-    return (
-      <form>
-        <div className="slide__container">
-          {/*Slutpris */}
-          <Slider
-            sliderLabel={"Estimerat Slutpris:"}
-            name={"slutpris"}
-            minValue={"750000"}
-            maxValue={"8500000"}
-            stepSize={"5000"}
-            defaultValue={"2500000"}
-            handleChange={this.handleChange}
-          />
+        {/*Räntesats */}
+        <Slider
+          sliderLabel={"Ränta (%)"}
+          name={"interestRate"}
+          minValue={"1"}
+          maxValue={"10"}
+          stepSize={".01"}
+          defaultValue={"2"}
+          handleChange={props.handleChange}
+        />
+        <span>{props.interestRate}%</span>
+        <br />
+        <br />
 
-          <span>Value: {this.state.slutpris} SEK</span>
-          <br />
-          <br />
+        {/*Ammortering */}
+        <Slider
+          sliderLabel={"Ammortering (%/år):"}
+          name={"yearlyPaymentsPercentage"}
+          minValue={"0"}
+          maxValue={"5"}
+          stepSize={".1"}
+          defaultValue={"2"}
+          handleChange={props.handleChange}
+        />
+        <span>{props.yearlyPaymentsPercentage}</span>
+        <br />
+        <br />
 
-          {/*Kontantinsats */}
-          <Slider
-            sliderLabel={"Kontantinsats (%):"}
-            name={"cashDeposit"}
-            minValue={"15"}
-            maxValue={"100"}
-            stepSize={"1"}
-            defaultValue={"15"}
-            handleChange={this.handleChange}
-          />
-          <span>Value: {this.state.cashDeposit}%</span>
-          <br />
-          <br />
-
-          {/*Räntesats */}
-          <Slider
-            sliderLabel={"Ränta (%)"}
-            name={"interestRate"}
-            minValue={"1"}
-            maxValue={"10"}
-            stepSize={".01"}
-            defaultValue={"2"}
-            handleChange={this.handleChange}
-          />
-          <span>Value: {this.state.interestRate}%</span>
-          <br />
-          <br />
-
-          {/*Räntesats */}
-          <Slider
-            sliderLabel={"Ammortering (%/år):"}
-            name={"payments"}
-            minValue={"0"}
-            maxValue={"5"}
-            stepSize={".1"}
-            defaultValue={"2"}
-            handleChange={this.handleChange}
-          />
-          <span>Value: {this.state.payments}</span>
-          <br />
-          <br />
-
-          <span>Value: {this.state.sum}</span>
-        </div>
-      </form>
-    );
-  }
-}
+        {/*Driftskostnad */}
+        <Slider
+          sliderLabel={"Driftskostnad (SEK/år):"}
+          name={"yearlyRunningCost"}
+          minValue={"10000"}
+          maxValue={"100000"}
+          stepSize={"500"}
+          defaultValue={"50000"}
+          handleChange={props.handleChange}
+        />
+        <span>{props.yearlyRunningCost}</span>
+        <br />
+        <br />
+      </div>
+    </form>
+  );
+};
 
 export default AptForm;

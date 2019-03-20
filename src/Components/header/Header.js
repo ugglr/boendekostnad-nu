@@ -9,7 +9,7 @@ const Header = () => {
     <header className="masthead d-flex">
       <div className="container text-center my-auto">
         <h1>Boendekostnad.nu</h1>
-        <h3>
+        <h3 style={{ color: "white" }}>
           <em>Den ultimata boendekostnadskalkylatorn på nätet!</em>
         </h3>
         <br />

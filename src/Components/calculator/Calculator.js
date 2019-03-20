@@ -22,7 +22,6 @@ class Calculator extends Component {
     return (
       <React.Fragment>
         <p style={{ marginLeft: "2rem" }}>
-          Hus
           <Switch
             checked={this.state.toggle}
             onChange={this.handleToggle}
