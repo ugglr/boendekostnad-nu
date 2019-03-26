@@ -6,6 +6,8 @@ import Results from "../Results/Results";
 
 import "../calculator.css";
 
+import { Container } from "react-bootstrap";
+
 class AptCalculator extends Component {
   state = {
     //--------Fixed monthly living costs-----------
@@ -157,7 +159,7 @@ class AptCalculator extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ width: "100%", marginLeft: "2rem" }}>
+        <Container fluid>
           <AptForm
             handleChange={this.handleChange}
             handleToggle={this.handleToggle}
@@ -181,7 +183,8 @@ class AptCalculator extends Component {
             renoFundToggle={this.state.renoFundToggle}
             otherToggle={this.state.otherToggle}
           />
-        </div>
+        </Container>
+
         <Results
           resFormat={"AptCalculator"}
           monthCost={this.state.sum}

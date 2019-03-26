@@ -21,15 +21,27 @@ class Calculator extends Component {
   render() {
     return (
       <React.Fragment>
-        <p style={{ marginLeft: "5rem" }}>
+        <div
+          style={{
+            marginTop: "1.3rem",
+            marginLeft: "1.5rem",
+            marginRight: "1.5rem",
+            borderStyle: "solid",
+            borderWidth: "3px",
+            borderColor: "#1d809f",
+            padding: "4px"
+          }}
+        >
+          <span style={{ fontSize: "1.3rem" }}>
+            <strong>Bostadsrätt eller Fastighet?</strong>
+          </span>
           <Switch
             checked={this.state.toggle}
             onChange={this.handleToggle}
             color="primary"
             style={{ color: "#1d809f" }}
           />
-          Bostadsrätt
-        </p>
+        </div>
         {this.state.toggle && <AptCalculator />}
         {this.state.toggle || <HouseCalculator />}
       </React.Fragment>

@@ -57,7 +57,7 @@ const HouseForm = props => {
           defaultValue={"2"}
           handleChange={props.handleChange}
         />
-        <span>{props.yearlyPaymentsPercentage}</span>
+        <span>{props.yearlyPaymentsPercentage}%</span>
         <hr />
         {/*Driftskostnad */}
         <Slider

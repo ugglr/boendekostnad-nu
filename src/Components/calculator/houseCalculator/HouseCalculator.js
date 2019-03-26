@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import { Container } from "react-bootstrap";
+
 //Local component import
 import HouseForm from "./HouseForm";
 import Results from "../Results/Results";
@@ -164,7 +166,7 @@ class HouseCalculator extends Component {
   render() {
     return (
       <React.Fragment>
-        <div style={{ width: "100%", marginLeft: "2rem" }}>
+        <Container fluid>
           <HouseForm
             handleChange={this.handleChange}
             handleToggle={this.handleToggle}
@@ -190,7 +192,7 @@ class HouseCalculator extends Component {
             pantbrevToggle={this.state.pantbrevToggle}
             nuvarandePantbrev={this.state.nuvarandePantbrev}
           />
-        </div>
+        </Container>
         <Results
           monthCost={this.state.sum}
           monthlyInterestPayments={this.state.monthlyInterestPayments}
