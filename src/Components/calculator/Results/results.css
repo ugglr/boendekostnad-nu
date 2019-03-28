@@ -1,0 +1,18 @@
+.boxStyles {
+  margin-left: 20%;
+  width: 60%;
+}
+
+.boxBorder {
+  border-style: solid;
+  padding: 5px;
+  border-color: #fff;
+  border-width: 3px;
+}
+
+@media (max-width: 500px) {
+  .boxStyles {
+    margin-left: 6.5%;
+    width: 87%;
+  }
+}

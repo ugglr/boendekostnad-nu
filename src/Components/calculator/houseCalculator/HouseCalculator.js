@@ -167,31 +167,33 @@ class HouseCalculator extends Component {
     return (
       <React.Fragment>
         <Container fluid>
-          <HouseForm
-            handleChange={this.handleChange}
-            handleToggle={this.handleToggle}
-            updateSum={this.updateSum}
-            slutpris={this.state.slutpris}
-            cashDepositPercentage={this.state.cashDepositPercentage}
-            interestRate={this.state.interestRate}
-            yearlyPaymentsPercentage={this.state.yearlyPaymentsPercentage}
-            yearlyRunningCost={this.state.yearlyRunningCost}
-            monthlyTransportCosts={this.state.monthlyTransportCosts}
-            monthlyFoodCosts={this.state.monthlyFoodCosts}
-            monthlyInsuranceCost={this.state.monthlyInsuranceCost}
-            monthlyRenoFundCost={this.state.monthlyRenoFundCost}
-            monthlyOtherCost={this.state.monthlyOtherCost}
-            sumOtherCosts={this.state.sumOtherCosts}
-            loanLeft={this.state.loanPercentageLeft}
-            yearsLeft={this.state.yearsLeft}
-            transportToggle={this.state.transportToggle}
-            foodToggle={this.state.foodToggle}
-            insuranceToggle={this.state.insuranceToggle}
-            renoFundToggle={this.state.renoFundToggle}
-            otherToggle={this.state.otherToggle}
-            pantbrevToggle={this.state.pantbrevToggle}
-            nuvarandePantbrev={this.state.nuvarandePantbrev}
-          />
+          <div style={{ width: "95%", marginLeft: "4%" }}>
+            <HouseForm
+              handleChange={this.handleChange}
+              handleToggle={this.handleToggle}
+              updateSum={this.updateSum}
+              slutpris={this.state.slutpris}
+              cashDepositPercentage={this.state.cashDepositPercentage}
+              interestRate={this.state.interestRate}
+              yearlyPaymentsPercentage={this.state.yearlyPaymentsPercentage}
+              yearlyRunningCost={this.state.yearlyRunningCost}
+              monthlyTransportCosts={this.state.monthlyTransportCosts}
+              monthlyFoodCosts={this.state.monthlyFoodCosts}
+              monthlyInsuranceCost={this.state.monthlyInsuranceCost}
+              monthlyRenoFundCost={this.state.monthlyRenoFundCost}
+              monthlyOtherCost={this.state.monthlyOtherCost}
+              sumOtherCosts={this.state.sumOtherCosts}
+              loanLeft={this.state.loanPercentageLeft}
+              yearsLeft={this.state.yearsLeft}
+              transportToggle={this.state.transportToggle}
+              foodToggle={this.state.foodToggle}
+              insuranceToggle={this.state.insuranceToggle}
+              renoFundToggle={this.state.renoFundToggle}
+              otherToggle={this.state.otherToggle}
+              pantbrevToggle={this.state.pantbrevToggle}
+              nuvarandePantbrev={this.state.nuvarandePantbrev}
+            />
+          </div>
         </Container>
         <Results
           monthCost={this.state.sum}

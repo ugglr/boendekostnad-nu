@@ -21,17 +21,7 @@ class Calculator extends Component {
   render() {
     return (
       <React.Fragment>
-        <div
-          style={{
-            marginTop: "1.3rem",
-            marginLeft: "1.5rem",
-            marginRight: "1.5rem",
-            borderStyle: "solid",
-            borderWidth: "3px",
-            borderColor: "#1d809f",
-            padding: "4px"
-          }}
-        >
+        <div style={switchBoxStyle}>
           <span style={{ fontSize: "1.3rem" }}>
             <strong>Bostadsrätt eller Fastighet?</strong>
           </span>
@@ -48,5 +38,16 @@ class Calculator extends Component {
     );
   }
 }
+
+var switchBoxStyle = {
+  marginTop: "1.4rem",
+  marginLeft: "4.7rem",
+  marginRight: "1.5rem",
+  borderStyle: "solid",
+  borderWidth: "3px",
+  borderColor: "#1d809f",
+  padding: "4px",
+  width: "22rem"
+};
 
 export default Calculator;
